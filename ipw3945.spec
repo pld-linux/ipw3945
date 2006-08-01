@@ -18,6 +18,7 @@ License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}-pre2.tgz
 # Source0-md5:	c4c42572e88d5606ba1dc9383e56061d
+Patch0:		%{name}-bashizm.patch
 URL:		http://ipw3945.sourceforge.net/
 BuildRequires:	ieee80211-devel >= %{_ieeever}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
@@ -90,6 +91,7 @@ PRO/Wireless 3945.
 
 %prep
 %setup -q -n %{name}-%{version}-pre2
+%patch0 -p1
 
 %build
 # kernel module(s)
@@ -104,7 +106,7 @@ for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}
 	ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h o/include/linux/autoconf.h
 	ln -sf %{_kernelsrcdir}/Module.symvers-$cfg o/Module.symvers
 %if %{with dist_kernel}
-	%{__make} -C %{_kernelsrcdir} O=$PWD/o prepare scripts
+	%{__make} -C %{_kernelsrcdir} O=$PWD/o prepare scripts 
 %else
 	install -d o/include/config
 	touch o/include/config/MARKER
@@ -116,7 +118,7 @@ for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}
 		SYSSRC=%{_kernelsrcdir} \
 		SYSOUT=$PWD/o \
 		M=$PWD O=$PWD/o \
-		%{?with_verbose:V=1}
+		%{?with_verbose:V=1} 
 	%{__make} -C %{_kernelsrcdir} modules \
 		CC="%{__cc}" CPP="%{__cpp}" \
 		SYSSRC=%{_kernelsrcdir} \
