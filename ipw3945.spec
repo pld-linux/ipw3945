@@ -1,4 +1,3 @@
-#TODO - remove bashizm from scripts
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	smp		# don't build SMP module
@@ -6,7 +5,7 @@
 #
 %define		_rel	1
 %define		_ieeever	1.1.14
-%define		_fwver	3.0
+%define		_fwver	1.13
 
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
 Summary(de):	Intel(R) PRO/Wireless 3945 Treiber für Linux
@@ -24,7 +23,7 @@ BuildRequires:	ieee80211-devel >= %{_ieeever}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
 BuildRequires:	rpmbuild(macros) >= 1.308
 BuildRequires:	sed >= 4.0
-#Requires:	ipw3945-firmware = %{_fwver}
+Requires:	ipw3945-firmware = %{_fwver}
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -71,7 +70,7 @@ Summary(pl):	Modu³ j±dra Linuksa SMP dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires:	hotplug
-#Requires:	ipw3945-firmware = %{_fwver}
+Requires:	ipw3945-firmware = %{_fwver}
 %(rpm -q --qf 'Requires: kernel%{_alt_kernel}-smp-net-ieee80211 = %%{epoch}:%%{version}-%%{release}\n' ieee80211-devel | sed -e 's/ (none):/ /' | grep -v "is not")
 %{?with_dist_kernel:%requires_releq_kernel_smp}
 Requires(post,postun):	/sbin/depmod
