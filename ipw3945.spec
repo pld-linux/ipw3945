@@ -45,7 +45,6 @@ Summary(de):	Linux Kernel Modul für Intel(R) PRo/Wireless 3945 Netzwerk Karten
 Summary(pl):	Modu³ j±dra Linuksa dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
-Requires:	hotplug
 %(rpm -q --qf 'Requires: kernel%{_alt_kernel}-net-ieee80211 = %%{epoch}:%%{version}-%%{release}\n' ieee80211-devel | sed -e 's/ (none):/ /' | grep -v "is not")
 %{?with_dist_kernel:%requires_releq_kernel_up}
 Requires(post,postun):	/sbin/depmod
@@ -69,7 +68,6 @@ Summary(de):	Linux SMP Kernel Modul für Intel(R) PRO/Wireless 3945 Netzwerk Kart
 Summary(pl):	Modu³ j±dra Linuksa SMP dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
-Requires:	hotplug
 Requires:	ipw3945-firmware = %{_fwver}
 %(rpm -q --qf 'Requires: kernel%{_alt_kernel}-smp-net-ieee80211 = %%{epoch}:%%{version}-%%{release}\n' ieee80211-devel | sed -e 's/ (none):/ /' | grep -v "is not")
 %{?with_dist_kernel:%requires_releq_kernel_smp}
