@@ -1,5 +1,3 @@
-#TODO:
-#- warnings *** Warning: "ieee80211_get_channel_flags" and *** Warning: "ieee80211_get_channel" 
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	smp		# don't build SMP module
@@ -20,6 +18,7 @@ Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tgz
 # Source0-md5:	1f393d7a080879dba1a824dec251d71e
 Patch0:		%{name}-bashizm.patch
+Patch1:		%{name}-fix_undefined_symbols.patch
 URL:		http://ipw3945.sourceforge.net/
 BuildRequires:	ieee80211-devel >= %{_ieeever}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
@@ -91,6 +90,7 @@ PRO/Wireless 3945.
 %prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 # kernel module(s)
