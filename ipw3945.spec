@@ -1,11 +1,13 @@
+#TODO:
+#- warnings *** Warning: "ieee80211_get_channel_flags" and *** Warning: "ieee80211_get_channel" 
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		_rel	1
+%define		_rel		2	
 %define		_ieeever	1.1.14
-%define		_fwver	1.13
+%define		_fwver		1.13
 
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
 Summary(de):	Intel(R) PRO/Wireless 3945 Treiber für Linux
@@ -15,8 +17,8 @@ Version:	1.1.0
 Release:	%{_rel}
 License:	GPL v2
 Group:		Base/Kernel
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}-pre2.tgz
-# Source0-md5:	c4c42572e88d5606ba1dc9383e56061d
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tgz
+# Source0-md5:	1f393d7a080879dba1a824dec251d71e
 Patch0:		%{name}-bashizm.patch
 URL:		http://ipw3945.sourceforge.net/
 BuildRequires:	ieee80211-devel >= %{_ieeever}
@@ -87,7 +89,7 @@ Ten pakiet zawiera sterowniki j±dra Linuksa SMP dla kart Intel(R)
 PRO/Wireless 3945.
 
 %prep
-%setup -q -n %{name}-%{version}-pre2
+%setup -q -n %{name}-%{version}
 %patch0 -p1
 
 %build
@@ -133,13 +135,22 @@ install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{,smp}/misc \
 cd built
 install %{?with_dist_kernel:up}%{!?with_dist_kernel:nondist}/ipw3945.ko \
 	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/ipw3945_current.ko
-echo "alias ipw3945 ipw3945_current" \
+echo "alias ipw3945 ipw3945_current
+	install ipw3945 /sbin/modprobe --ignore-install ipw3945 ; sleep 0.5 ; \
+        	/sbin/ipw3945d-$(uname -r) --quiet
+	remove  ipw3945 /sbin/ipw3945d-$(uname -r) --kill ; \
+        	/sbin/modprobe -r --ignore-remove ipw3945" \
 	>> $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
 
 %if %{with smp} && %{with dist_kernel}
 install smp/ipw3945.ko \
 	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/ipw3945_current.ko
-echo "alias ipw3945 ipw3945_current" \
+echo "alias ipw3945 ipw3945_current
+	install ipw3945 /sbin/modprobe --ignore-install ipw3945 ; sleep 0.5 ; \
+        	/sbin/ipw3945d-$(uname -r) --quiet
+	remove  ipw3945 /sbin/ipw3945d-$(uname -r) --kill ; \
+        	/sbin/modprobe -r --ignore-remove ipw3945
+" \
 	>> $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{_kernel_ver}smp/ipw3945.conf
 %endif
 
