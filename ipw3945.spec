@@ -50,6 +50,7 @@ Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_up}
 Requires(post,postun):	/sbin/depmod
 Requires:	module-init-tools >= 3.2.2-2
+Provides:       %{name}
 
 %description -n kernel%{_alt_kernel}-net-%{name}
 This package contains Linux kernel drivers for the Intel(R)
@@ -74,6 +75,7 @@ Requires:	ipw3945-firmware = %{_fwver}
 %{?with_dist_kernel:%requires_releq_kernel_smp}
 Requires(post,postun):	/sbin/depmod
 Requires:	module-init-tools >= 3.2.2-2
+Provides:	%{name}
 
 %description -n kernel%{_alt_kernel}-smp-net-%{name}
 This package contains Linux SMP kernel drivers for the Intel(R)
@@ -147,8 +149,8 @@ install smp/ipw3945.ko \
 	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/ipw3945_current.ko
 echo "alias ipw3945 ipw3945_current
 	install ipw3945 /sbin/modprobe --ignore-install ipw3945 ; sleep 0.5 ; \
-        	/sbin/ipw3945d-$(uname -r) --quiet
-	remove  ipw3945 /sbin/ipw3945d-$(uname -r) --kill ; \
+        	/sbin/ipw3945d --quiet
+	remove  ipw3945 /sbin/ipw3945d --kill ; \
         	/sbin/modprobe -r --ignore-remove ipw3945
 " \
 	>> $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{_kernel_ver}smp/ipw3945.conf
