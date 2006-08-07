@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	smp		# don't build SMP module
@@ -90,7 +91,7 @@ Ten pakiet zawiera sterowniki j±dra Linuksa SMP dla kart Intel(R)
 PRO/Wireless 3945.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 
