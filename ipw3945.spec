@@ -51,7 +51,7 @@ Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_up}
 Requires(post,postun):	/sbin/depmod
 Requires:	module-init-tools >= 3.2.2-2
-Provides:       %{name}
+Provides:	%{name}
 
 %description -n kernel%{_alt_kernel}-net-%{name}
 This package contains Linux kernel drivers for the Intel(R)
