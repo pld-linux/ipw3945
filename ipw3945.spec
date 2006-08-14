@@ -1,10 +1,11 @@
-#
+#TODO
+# - add SOURCE1 to %{_sysconfdir}/modprobe.conf (%post?)
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		_rel		2	
+%define		_rel		3	
 %define		_ieeever	1.1.14
 %define		_fwver		1.13
 
@@ -18,6 +19,7 @@ License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tgz
 # Source0-md5:	1f393d7a080879dba1a824dec251d71e
+Source1:	%{name}-modprobe.conf		
 Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-fix_undefined_symbols.patch
 URL:		http://ipw3945.sourceforge.net/
@@ -133,28 +135,17 @@ done
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{,smp}/misc \
-	 $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{_kernel_ver}{,smp}
+	 $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d
 
 cd built
 install %{?with_dist_kernel:up}%{!?with_dist_kernel:nondist}/ipw3945.ko \
 	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/ipw3945_current.ko
-echo "alias ipw3945 ipw3945_current
-	install ipw3945 /sbin/modprobe --ignore-install ipw3945 ; sleep 0.5 ; \
-        	/sbin/ipw3945d-$(uname -r) --quiet
-	remove  ipw3945 /sbin/ipw3945d-$(uname -r) --kill ; \
-        	/sbin/modprobe -r --ignore-remove ipw3945" \
-	>> $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
+install %{SOURCE1}  $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{name}.conf
 
 %if %{with smp} && %{with dist_kernel}
 install smp/ipw3945.ko \
 	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/ipw3945_current.ko
-echo "alias ipw3945 ipw3945_current
-	install ipw3945 /sbin/modprobe --ignore-install ipw3945 ; sleep 0.5 ; \
-        	/sbin/ipw3945d --quiet
-	remove  ipw3945 /sbin/ipw3945d --kill ; \
-        	/sbin/modprobe -r --ignore-remove ipw3945
-" \
-	>> $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{_kernel_ver}smp/ipw3945.conf
+install %{SOURCE1}  $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{name}.conf
 %endif
 
 %clean
@@ -175,11 +166,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kernel%{_alt_kernel}-net-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/misc/ipw3945*.ko*
-%{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
+%{_sysconfdir}/modprobe.d/ipw3945.conf
 
 %if %{with smp} && %{with dist_kernel}
 %files -n kernel%{_alt_kernel}-smp-net-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}smp/misc/ipw3945*.ko*
-%{_sysconfdir}/modprobe.d/%{_kernel_ver}smp/ipw3945.conf
+%{_sysconfdir}/modprobe.d/ipw3945.conf
 %endif
