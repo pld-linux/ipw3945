@@ -1,5 +1,4 @@
-#TODO
-# - add SOURCE1 to %{_sysconfdir}/modprobe.conf (%post?)
+#
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	smp		# don't build SMP module
@@ -17,9 +16,9 @@ Version:	1.1.0
 Release:	%{_rel}
 License:	GPL v2
 Group:		Base/Kernel
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tgz
+Source0:	http://dl.sourceforge.net/ipw3945/%{name}-%{version}.tgz
 # Source0-md5:	1f393d7a080879dba1a824dec251d71e
-Source1:	%{name}-modprobe.conf		
+Source1:	%{name}-modprobe.conf
 Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-fix_undefined_symbols.patch
 URL:		http://ipw3945.sourceforge.net/
@@ -137,15 +136,15 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{,smp}/misc \
 	 $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d
 
+install %{SOURCE1}  $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{name}.conf
+
 cd built
 install %{?with_dist_kernel:up}%{!?with_dist_kernel:nondist}/ipw3945.ko \
 	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/ipw3945_current.ko
-install %{SOURCE1}  $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{name}.conf
 
 %if %{with smp} && %{with dist_kernel}
 install smp/ipw3945.ko \
 	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/ipw3945_current.ko
-install %{SOURCE1}  $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{name}.conf
 %endif
 
 %clean
