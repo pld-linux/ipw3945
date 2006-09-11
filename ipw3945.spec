@@ -4,7 +4,7 @@
 %bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		_rel		3	
+%define		_rel		4
 %define		_ieeever	1.1.14
 %define		_fwver		1.13
 
@@ -21,6 +21,7 @@ Source0:	http://dl.sourceforge.net/ipw3945/%{name}-%{version}.tgz
 Source1:	%{name}-modprobe.conf
 Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-fix_undefined_symbols.patch
+Patch2:		%{name}-config.patch
 URL:		http://ipw3945.sourceforge.net/
 BuildRequires:	ieee80211-devel >= %{_ieeever}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
@@ -95,6 +96,7 @@ PRO/Wireless 3945.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 # kernel module(s)
