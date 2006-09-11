@@ -1,0 +1,34 @@
+diff -uNr ipw3945-1.1.0.orig/Makefile ipw3945-1.1.0/Makefile
+--- ipw3945-1.1.0.orig/Makefile	2006-07-14 15:34:55.000000000 +0000
++++ ipw3945-1.1.0/Makefile	2006-09-11 05:42:50.000000000 +0000
+@@ -26,26 +26,26 @@
+ # NOTE:  If you have problems compiling due to IW_MODE_MONITOR not being
+ #        defined then you need to update the wireless extension version
+ #	 installed in your kernel, or comment this line out.
+-# CONFIG_IPW3945_MONITOR=y
++CONFIG_IPW3945_MONITOR=y
+ 
+ # If you are interested in using radiotap headers in monitor mode,
+ # simply uncomment:
+ #
+ # NOTE:  To use RADIOTAP you must also enable MONITOR above.
+-# CONFIG_IEEE80211_RADIOTAP=y
++CONFIG_IEEE80211_RADIOTAP=y
+ 
+ # The above monitor mode provides standard monitor mode.  The following
+ # will create a new interface (named raw%d) which will be sent all
+ # 802.11 frames received on the interface
+ #
+ # NOTE:  To use PROMISCUOUS you must also enable MONITOR above.
+-# CONFIG_IPW3945_PROMISCUOUS=y
++CONFIG_IPW3945_PROMISCUOUS=y
+ 
+ # The following, if enabled, will add a sysfs entry 'rx' that raw
+ # 802.11 radiotap formatted packets can be written to.  Those packets
+ # will be passed to the driver as if they were received from over the
+ # air.  This is useful in debugging features not supported by your AP.
+-# CONFIG_IPW3945_SIM_RX=y
++CONFIG_IPW3945_SIM_RX=y
+ 
+ endif
+ 
