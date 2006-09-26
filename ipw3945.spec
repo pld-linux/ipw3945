@@ -111,7 +111,7 @@ for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}
 	ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h o/include/linux/autoconf.h
 	ln -sf %{_kernelsrcdir}/Module.symvers-$cfg o/Module.symvers
 %if %{with dist_kernel}
-	%{__make} -j1 -C %{_kernelsrcdir} O=$PWD/o prepare scripts 
+	%{__make} -j1 -C %{_kernelsrcdir} O=$PWD/o prepare scripts
 %else
 	install -d o/include/config
 	touch o/include/config/MARKER
@@ -123,7 +123,7 @@ for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}
 		SYSSRC=%{_kernelsrcdir} \
 		SYSOUT=$PWD/o \
 		M=$PWD O=$PWD/o \
-		%{?with_verbose:V=1} 
+		%{?with_verbose:V=1}
 	%{__make} -C %{_kernelsrcdir} modules \
 		CC="%{__cc}" CPP="%{__cpp}" \
 		SYSSRC=%{_kernelsrcdir} \
@@ -138,7 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{,smp}/misc \
 	 $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d
 
-install %{SOURCE1}  $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{name}.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{name}.conf
 
 cd built
 install %{?with_dist_kernel:up}%{!?with_dist_kernel:nondist}/ipw3945.ko \
@@ -152,7 +152,7 @@ install smp/ipw3945.ko \
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-n kernel%{_alt_kernel}-net-%{name}	
+%post	-n kernel%{_alt_kernel}-net-%{name}
 %depmod %{_kernel_ver}
 
 %postun	-n kernel%{_alt_kernel}-net-%{name}
