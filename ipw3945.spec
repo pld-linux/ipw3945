@@ -7,7 +7,7 @@
 %define		_rel		4
 %define		_ieeever	1.1.14
 %define		_fwver		1.13
-
+%define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
 Summary(de):	Intel(R) PRO/Wireless 3945 Treiber für Linux
 Summary(pl):	Sterownik dla Linuksa do kart Intel(R) PRO/Wireless 3945
@@ -25,7 +25,7 @@ Patch2:		%{name}-config.patch
 URL:		http://ipw3945.sourceforge.net/
 BuildRequires:	ieee80211-devel >= %{_ieeever}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
-BuildRequires:	rpmbuild(macros) >= 1.308
+BuildRequires:	rpmbuild(macros) >= 1.330
 BuildRequires:	sed >= 4.0
 Requires:	ipw3945-firmware = %{_fwver}
 ExclusiveArch:	%{ix86} %{x8664}
@@ -99,55 +99,11 @@ PRO/Wireless 3945.
 %patch2 -p1
 
 %build
-# kernel module(s)
-rm -rf built
-mkdir -p built/{nondist,smp,up}
-for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}; do
-	if [ ! -r "%{_kernelsrcdir}/config-$cfg" ]; then
-		exit 1
-	fi
-	install -d o/include/linux
-	ln -sf %{_kernelsrcdir}/config-$cfg o/.config
-	ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h o/include/linux/autoconf.h
-	ln -sf %{_kernelsrcdir}/Module.symvers-$cfg o/Module.symvers
-%if %{with dist_kernel}
-	%{__make} -j1 -C %{_kernelsrcdir} O=$PWD/o prepare scripts
-%else
-	install -d o/include/config
-	touch o/include/config/MARKER
-	ln -sf %{_kernelsrcdir}/scripts o/scripts
-%endif
-	export IEEE80211_INC=%{_kernelsrcdir}/include
-	%{__make} -C %{_kernelsrcdir} clean \
-		RCS_FIND_IGNORE="-name '*.ko' -o" \
-		SYSSRC=%{_kernelsrcdir} \
-		SYSOUT=$PWD/o \
-		M=$PWD O=$PWD/o \
-		%{?with_verbose:V=1}
-	%{__make} -C %{_kernelsrcdir} modules \
-		CC="%{__cc}" CPP="%{__cpp}" \
-		SYSSRC=%{_kernelsrcdir} \
-		SYSOUT=$PWD/o \
-		M=$PWD O=$PWD/o \
-		%{?with_verbose:V=1}
-	mv *.ko built/$cfg
-done
+%build_kernel_modules -m ipw3945
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{,smp}/misc \
-	 $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d
-
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/modprobe.d/%{name}.conf
-
-cd built
-install %{?with_dist_kernel:up}%{!?with_dist_kernel:nondist}/ipw3945.ko \
-	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/ipw3945_current.ko
-
-%if %{with smp} && %{with dist_kernel}
-install smp/ipw3945.ko \
-	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/ipw3945_current.ko
-%endif
+%install_kernel_modules -s %{_mod_suffix} -n %{name} -m ipw3945 -d misc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -166,12 +122,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n kernel%{_alt_kernel}-net-%{name}
 %defattr(644,root,root,755)
-/lib/modules/%{_kernel_ver}/misc/ipw3945*.ko*
+/lib/modules/%{_kernel_ver}/misc/ipw3945-%{_mod_siffix}.ko*
 %{_sysconfdir}/modprobe.d/ipw3945.conf
 
 %if %{with smp} && %{with dist_kernel}
 %files -n kernel%{_alt_kernel}-smp-net-%{name}
 %defattr(644,root,root,755)
-/lib/modules/%{_kernel_ver}smp/misc/ipw3945*.ko*
+/lib/modules/%{_kernel_ver}smp/misc/ipw3945-%{_mod_suffix}.ko*
 %{_sysconfdir}/modprobe.d/ipw3945.conf
 %endif
