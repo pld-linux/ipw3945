@@ -37,7 +37,7 @@ PRO/Wireless 3945 Network Connection mini PCI adapter.
 
 %description -l de
 Dieses Projekt wurde von Intel gestartet um die Wartung von mini PCI
-Intel PRO/Wireless 3945 Netzwerk Karten zu ermöglichen.
+Intel PRO/Wireless 3945 Netzwerkkarten zu ermöglichen.
 
 %description -l pl
 Ten projekt zosta³ stworzony przez Intela, aby umo¿liwiæ obs³ugê kart
@@ -45,7 +45,7 @@ mini PCI Intel PRO/Wireless 3945 Network Connection.
 
 %package -n kernel%{_alt_kernel}-net-%{name}
 Summary:	Linux kernel module for the Intel(R) PRO/Wireless 3945
-Summary(de):	Linux Kernel Modul für Intel(R) PRo/Wireless 3945 Netzwerk Karten
+Summary(de):	Linux Kernel Modul für Intel(R) PRo/Wireless 3945 Netzwerkkarten
 Summary(pl):	Modu³ j±dra Linuksa dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
@@ -61,7 +61,7 @@ PRO/Wireless 3945.
 
 %description -n kernel%{_alt_kernel}-net-%{name} -l de
 Dieses Paket enthält Linux Kernel Treiber für Intel(R) PRO/Wireless
-3945 Netzwerk Karten.
+3945 Netzwerkkarten.
 
 %description -n kernel%{_alt_kernel}-net-%{name} -l pl
 Ten pakiet zawiera sterowniki j±dra Linuksa dla kart Intel(R)
@@ -69,7 +69,7 @@ PRO/Wireless 3945.
 
 %package -n kernel%{_alt_kernel}-smp-net-%{name}
 Summary:	Linux SMP kernel module for the Intel(R) PRO/Wireless 3945
-Summary(de):	Linux SMP Kernel Modul für Intel(R) PRO/Wireless 3945 Netzwerk Karten
+Summary(de):	Linux SMP Kernel Modul für Intel(R) PRO/Wireless 3945 Netzwerkkarten
 Summary(pl):	Modu³ j±dra Linuksa SMP dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
@@ -86,7 +86,7 @@ PRO/Wireless 3945.
 
 %description -n kernel%{_alt_kernel}-smp-net-%{name} -l de
 Dieses Paket enthält Linux SMP Kernel Treiber für Intel(R)
-PRO/Wireless 3945 Netzwerk Karten.
+PRO/Wireless 3945 Netzwerkkarten.
 
 %description -n kernel%{_alt_kernel}-smp-net-%{name} -l pl
 Ten pakiet zawiera sterowniki j±dra Linuksa SMP dla kart Intel(R)
