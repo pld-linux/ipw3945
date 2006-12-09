@@ -123,11 +123,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kernel%{_alt_kernel}-net-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/misc/ipw3945-%{_mod_suffix}.ko*
-%{_sysconfdir}/modprobe.d/ipw3945.conf
+%{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
 
 %if %{with smp} && %{with dist_kernel}
 %files -n kernel%{_alt_kernel}-smp-net-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}smp/misc/ipw3945-%{_mod_suffix}.ko*
-%{_sysconfdir}/modprobe.d/ipw3945.conf
+%{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
 %endif
