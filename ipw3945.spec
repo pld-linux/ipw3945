@@ -23,7 +23,7 @@ Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-fix_undefined_symbols.patch
 Patch2:		%{name}-config.patch
 URL:		http://ipw3945.sourceforge.net/
-BuildRequires:	ieee80211-devel >= %{_ieeever}
+BuildRequires:	ieee80211-devel = %{_ieeever}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
 BuildRequires:	rpmbuild(macros) >= 1.330
 BuildRequires:	sed >= 4.0
