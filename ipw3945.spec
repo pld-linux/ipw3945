@@ -5,7 +5,7 @@
 %bcond_with	verbose		# verbose build (V=1)
 #
 %define		_rel		1
-%define		_ieeever	1.2.15
+%define		_ieeever	1.1.14
 %define		_fwver		1.13
 %define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
@@ -122,7 +122,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n kernel%{_alt_kernel}-net-%{name}
 %defattr(644,root,root,755)
-/lib/modules/%{_kernel_ver}/misc/ipw3945-%{_mod_siffix}.ko*
+/lib/modules/%{_kernel_ver}/misc/ipw3945-%{_mod_suffix}.ko*
 %{_sysconfdir}/modprobe.d/ipw3945.conf
 
 %if %{with smp} && %{with dist_kernel}
