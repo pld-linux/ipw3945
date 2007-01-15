@@ -16,7 +16,7 @@ Version:	1.2.0
 Release:	%{_rel}
 License:	GPL v2
 Group:		Base/Kernel
-Source0:	http://prdownloads.sourceforge.net/ipw3945/%{name}-%{version}.tgz
+Source0:	http://dl.sourceforge.net/ipw3945/%{name}-%{version}.tgz
 # Source0-md5:	fd4cc3b52b8e1d4d1e303d30c9dcd31b
 Source1:	%{name}-modprobe.conf
 Patch0:		%{name}-bashizm.patch
