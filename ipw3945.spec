@@ -10,8 +10,8 @@
 %define		_fwver		1.13
 %define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
-Summary(de.UTF-8):   Intel(R) PRO/Wireless 3945 Treiber für Linux
-Summary(pl.UTF-8):   Sterownik dla Linuksa do kart Intel(R) PRO/Wireless 3945
+Summary(de.UTF-8):	Intel(R) PRO/Wireless 3945 Treiber für Linux
+Summary(pl.UTF-8):	Sterownik dla Linuksa do kart Intel(R) PRO/Wireless 3945
 Name:		ipw3945
 Version:	1.2.0
 Release:	%{_rel}
@@ -45,8 +45,8 @@ mini PCI Intel PRO/Wireless 3945 Network Connection.
 
 %package -n kernel%{_alt_kernel}-net-%{name}
 Summary:	Linux kernel module for the Intel(R) PRO/Wireless 3945
-Summary(de.UTF-8):   Linux Kernel Modul für Intel(R) PRo/Wireless 3945 Netzwerkkarten
-Summary(pl.UTF-8):   Moduł jądra Linuksa dla kart Intel(R) PRO/Wireless 3945
+Summary(de.UTF-8):	Linux Kernel Modul für Intel(R) PRo/Wireless 3945 Netzwerkkarten
+Summary(pl.UTF-8):	Moduł jądra Linuksa dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %(rpm -q --qf 'Requires: kernel%{_alt_kernel}-net-ieee80211 = %%{epoch}:%%{version}-%%{release}\n' ieee80211-devel | sed -e 's/ (none):/ /' | grep -v "is not")
@@ -69,8 +69,8 @@ PRO/Wireless 3945.
 
 %package -n kernel%{_alt_kernel}-smp-net-%{name}
 Summary:	Linux SMP kernel module for the Intel(R) PRO/Wireless 3945
-Summary(de.UTF-8):   Linux SMP Kernel Modul für Intel(R) PRO/Wireless 3945 Netzwerkkarten
-Summary(pl.UTF-8):   Moduł jądra Linuksa SMP dla kart Intel(R) PRO/Wireless 3945
+Summary(de.UTF-8):	Linux SMP Kernel Modul für Intel(R) PRO/Wireless 3945 Netzwerkkarten
+Summary(pl.UTF-8):	Moduł jądra Linuksa SMP dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires:	ipw3945-firmware = %{_fwver}
