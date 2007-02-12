@@ -10,8 +10,8 @@
 %define		_fwver		1.13
 %define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
-Summary(de):	Intel(R) PRO/Wireless 3945 Treiber für Linux
-Summary(pl):	Sterownik dla Linuksa do kart Intel(R) PRO/Wireless 3945
+Summary(de.UTF-8):   Intel(R) PRO/Wireless 3945 Treiber fÃ¼r Linux
+Summary(pl.UTF-8):   Sterownik dla Linuksa do kart Intel(R) PRO/Wireless 3945
 Name:		ipw3945
 Version:	1.2.0
 Release:	%{_rel}
@@ -35,18 +35,18 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This project was created by Intel to enable support for the Intel
 PRO/Wireless 3945 Network Connection mini PCI adapter.
 
-%description -l de
+%description -l de.UTF-8
 Dieses Projekt wurde von Intel gestartet um die Wartung von mini PCI
-Intel PRO/Wireless 3945 Netzwerkkarten zu ermöglichen.
+Intel PRO/Wireless 3945 Netzwerkkarten zu ermÃ¶glichen.
 
-%description -l pl
-Ten projekt zosta³ stworzony przez Intela, aby umo¿liwiæ obs³ugê kart
+%description -l pl.UTF-8
+Ten projekt zostaÅ‚ stworzony przez Intela, aby umoÅ¼liwiÄ‡ obsÅ‚ugÄ™ kart
 mini PCI Intel PRO/Wireless 3945 Network Connection.
 
 %package -n kernel%{_alt_kernel}-net-%{name}
 Summary:	Linux kernel module for the Intel(R) PRO/Wireless 3945
-Summary(de):	Linux Kernel Modul für Intel(R) PRo/Wireless 3945 Netzwerkkarten
-Summary(pl):	Modu³ j±dra Linuksa dla kart Intel(R) PRO/Wireless 3945
+Summary(de.UTF-8):   Linux Kernel Modul fÃ¼r Intel(R) PRo/Wireless 3945 Netzwerkkarten
+Summary(pl.UTF-8):   ModuÅ‚ jÄ…dra Linuksa dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %(rpm -q --qf 'Requires: kernel%{_alt_kernel}-net-ieee80211 = %%{epoch}:%%{version}-%%{release}\n' ieee80211-devel | sed -e 's/ (none):/ /' | grep -v "is not")
@@ -59,18 +59,18 @@ Provides:	%{name}
 This package contains Linux kernel drivers for the Intel(R)
 PRO/Wireless 3945.
 
-%description -n kernel%{_alt_kernel}-net-%{name} -l de
-Dieses Paket enthält Linux Kernel Treiber für Intel(R) PRO/Wireless
+%description -n kernel%{_alt_kernel}-net-%{name} -l de.UTF-8
+Dieses Paket enthÃ¤lt Linux Kernel Treiber fÃ¼r Intel(R) PRO/Wireless
 3945 Netzwerkkarten.
 
-%description -n kernel%{_alt_kernel}-net-%{name} -l pl
-Ten pakiet zawiera sterowniki j±dra Linuksa dla kart Intel(R)
+%description -n kernel%{_alt_kernel}-net-%{name} -l pl.UTF-8
+Ten pakiet zawiera sterowniki jÄ…dra Linuksa dla kart Intel(R)
 PRO/Wireless 3945.
 
 %package -n kernel%{_alt_kernel}-smp-net-%{name}
 Summary:	Linux SMP kernel module for the Intel(R) PRO/Wireless 3945
-Summary(de):	Linux SMP Kernel Modul für Intel(R) PRO/Wireless 3945 Netzwerkkarten
-Summary(pl):	Modu³ j±dra Linuksa SMP dla kart Intel(R) PRO/Wireless 3945
+Summary(de.UTF-8):   Linux SMP Kernel Modul fÃ¼r Intel(R) PRO/Wireless 3945 Netzwerkkarten
+Summary(pl.UTF-8):   ModuÅ‚ jÄ…dra Linuksa SMP dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires:	ipw3945-firmware = %{_fwver}
@@ -84,12 +84,12 @@ Provides:	%{name}
 This package contains Linux SMP kernel drivers for the Intel(R)
 PRO/Wireless 3945.
 
-%description -n kernel%{_alt_kernel}-smp-net-%{name} -l de
-Dieses Paket enthält Linux SMP Kernel Treiber für Intel(R)
+%description -n kernel%{_alt_kernel}-smp-net-%{name} -l de.UTF-8
+Dieses Paket enthÃ¤lt Linux SMP Kernel Treiber fÃ¼r Intel(R)
 PRO/Wireless 3945 Netzwerkkarten.
 
-%description -n kernel%{_alt_kernel}-smp-net-%{name} -l pl
-Ten pakiet zawiera sterowniki j±dra Linuksa SMP dla kart Intel(R)
+%description -n kernel%{_alt_kernel}-smp-net-%{name} -l pl.UTF-8
+Ten pakiet zawiera sterowniki jÄ…dra Linuksa SMP dla kart Intel(R)
 PRO/Wireless 3945.
 
 %prep
