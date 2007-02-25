@@ -28,6 +28,7 @@ URL:		http://ipw3945.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.330
 BuildRequires:	sed >= 4.0
 Requires:	ipw3945-firmware = %{_fwver}
+Requires:	ipw3945d
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
