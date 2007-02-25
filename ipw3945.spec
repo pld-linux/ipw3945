@@ -1,8 +1,8 @@
 #
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
-%bcond_without	smp		# don't build SMP module
 %bcond_without	up		# don't build UP module
+%bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
 #
 %define		_rel		1
@@ -121,14 +121,16 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-n kernel%{_alt_kernel}-smp-net-%{name}
 %depmod %{_kernel_ver}smp
 
+%if %{with up} || %{without dist_kernel}
 %files -n kernel%{_alt_kernel}-net-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/misc/ipw3945-%{_mod_suffix}.ko*
 %{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
+%endif
 
 %if %{with smp} && %{with dist_kernel}
 %files -n kernel%{_alt_kernel}-smp-net-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}smp/misc/ipw3945-%{_mod_suffix}.ko*
-%{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
+%{_sysconfdir}/modprobe.d/%{_kernel_ver}smp/ipw3945.conf
 %endif
