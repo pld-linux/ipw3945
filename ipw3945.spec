@@ -1,8 +1,6 @@
 #
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
-%bcond_without	up		# don't build UP module
-%bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
 #
 %define		_rel		1
@@ -25,7 +23,7 @@ Patch1:		%{name}-config.patch
 URL:		http://ipw3945.sourceforge.net/
 #BuildRequires:	ieee80211-devel = %{_ieeever}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
-BuildRequires:	rpmbuild(macros) >= 1.330
+BuildRequires:	rpmbuild(macros) >= 1.379
 BuildRequires:	sed >= 4.0
 Requires:	ipw3945-firmware = %{_fwver}
 Requires:	ipw3945d
@@ -51,7 +49,7 @@ Summary(pl.UTF-8):	Moduł jądra Linuksa dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %(rpm -q --qf 'Requires: kernel%{_alt_kernel}-net-ieee80211 = %%{epoch}:%%{version}-%%{release}\n' ieee80211-devel | sed -e 's/ (none):/ /' | grep -v "is not")
-%{?with_dist_kernel:%requires_releq_kernel_up}
+%{?with_dist_kernel:%requires_releq_kernel}
 Requires(post,postun):	/sbin/depmod
 Requires:	module-init-tools >= 3.2.2-2
 Provides:	%{name}
@@ -66,31 +64,6 @@ Dieses Paket enthält Linux Kernel Treiber für Intel(R) PRO/Wireless
 
 %description -n kernel%{_alt_kernel}-net-%{name} -l pl.UTF-8
 Ten pakiet zawiera sterowniki jądra Linuksa dla kart Intel(R)
-PRO/Wireless 3945.
-
-%package -n kernel%{_alt_kernel}-smp-net-%{name}
-Summary:	Linux SMP kernel module for the Intel(R) PRO/Wireless 3945
-Summary(de.UTF-8):	Linux SMP Kernel Modul für Intel(R) PRO/Wireless 3945 Netzwerkkarten
-Summary(pl.UTF-8):	Moduł jądra Linuksa SMP dla kart Intel(R) PRO/Wireless 3945
-Release:	%{_rel}@%{_kernel_ver_str}
-Group:		Base/Kernel
-Requires:	ipw3945-firmware = %{_fwver}
-%(rpm -q --qf 'Requires: kernel%{_alt_kernel}-smp-net-ieee80211 = %%{epoch}:%%{version}-%%{release}\n' ieee80211-devel | sed -e 's/ (none):/ /' | grep -v "is not")
-%{?with_dist_kernel:%requires_releq_kernel_smp}
-Requires(post,postun):	/sbin/depmod
-Requires:	module-init-tools >= 3.2.2-2
-Provides:	%{name}
-
-%description -n kernel%{_alt_kernel}-smp-net-%{name}
-This package contains Linux SMP kernel drivers for the Intel(R)
-PRO/Wireless 3945.
-
-%description -n kernel%{_alt_kernel}-smp-net-%{name} -l de.UTF-8
-Dieses Paket enthält Linux SMP Kernel Treiber für Intel(R)
-PRO/Wireless 3945 Netzwerkkarten.
-
-%description -n kernel%{_alt_kernel}-smp-net-%{name} -l pl.UTF-8
-Ten pakiet zawiera sterowniki jądra Linuksa SMP dla kart Intel(R)
 PRO/Wireless 3945.
 
 %prep
@@ -116,22 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-n kernel%{_alt_kernel}-net-%{name}
 %depmod %{_kernel_ver}
 
-%post	-n kernel%{_alt_kernel}-smp-net-%{name}
-%depmod %{_kernel_ver}smp
-
-%postun	-n kernel%{_alt_kernel}-smp-net-%{name}
-%depmod %{_kernel_ver}smp
-
-%if %{with up} || %{without dist_kernel}
+%if %{with dist_kernel}
 %files -n kernel%{_alt_kernel}-net-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/misc/ipw3945-%{_mod_suffix}.ko*
 %{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
-%endif
-
-%if %{with smp} && %{with dist_kernel}
-%files -n kernel%{_alt_kernel}-smp-net-%{name}
-%defattr(644,root,root,755)
-/lib/modules/%{_kernel_ver}smp/misc/ipw3945-%{_mod_suffix}.ko*
-%{_sysconfdir}/modprobe.d/%{_kernel_ver}smp/ipw3945.conf
 %endif
