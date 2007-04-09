@@ -22,7 +22,7 @@ Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-config.patch
 URL:		http://ipw3945.sourceforge.net/
 #BuildRequires:	ieee80211-devel = %{_ieeever}
-%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.7}
+%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRequires:	rpmbuild(macros) >= 1.379
 BuildRequires:	sed >= 4.0
 Requires:	ipw3945-firmware = %{_fwver}
