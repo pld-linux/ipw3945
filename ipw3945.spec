@@ -11,12 +11,12 @@ Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
 Summary(de.UTF-8):	Intel(R) PRO/Wireless 3945 Treiber für Linux
 Summary(pl.UTF-8):	Sterownik dla Linuksa do kart Intel(R) PRO/Wireless 3945
 Name:		ipw3945
-Version:	1.2.0
+Version:	1.2.1
 Release:	%{_rel}
 License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/ipw3945/%{name}-%{version}.tgz
-# Source0-md5:	fd4cc3b52b8e1d4d1e303d30c9dcd31b
+# Source0-md5:	9d6b2116122beb33a0d1d923ea49065c
 Source1:	%{name}-modprobe.conf
 Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-config.patch
