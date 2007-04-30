@@ -72,7 +72,6 @@ PRO/Wireless 3945.
 %patch1 -p1
 
 %build
-
 export IEEE80211_INC="%{_kernelsrcdir}"
 %build_kernel_modules -m ipw3945
 
