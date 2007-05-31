@@ -3,9 +3,9 @@
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		_rel		1
+%define		_rel		2
 %define		_ieeever	1.1.16
-%define		_fwver		1.13
+%define		_fwver		1.14.2
 %define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
 Summary(de.UTF-8):	Intel(R) PRO/Wireless 3945 Treiber für Linux
