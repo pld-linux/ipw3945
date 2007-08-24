@@ -3,7 +3,7 @@
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		_rel		5
+%define		_rel		6
 %define		_ieeever	1.2.17
 %define		_fwver		1.14.2
 %define		_mod_suffix	current
