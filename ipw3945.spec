@@ -4,7 +4,7 @@
 %bcond_with	verbose		# verbose build (V=1)
 #
 %define		_rel		5
-%define		_ieeever	1.1.16
+%define		_ieeever	1.2.17
 %define		_fwver		1.14.2
 %define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
@@ -21,7 +21,7 @@ Source1:	%{name}-modprobe.conf
 Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-config.patch
 URL:		http://ipw3945.sourceforge.net/
-#BuildRequires:	ieee80211-devel = %{_ieeever}
+BuildRequires:	ieee80211-devel = %{_ieeever}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRequires:	rpmbuild(macros) >= 1.379
 BuildRequires:	sed >= 4.0
