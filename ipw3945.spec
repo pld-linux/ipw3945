@@ -4,7 +4,7 @@
 %bcond_with	verbose		# verbose build (V=1)
 #
 %define		_rel		1
-%define		_ieeever	1.2.17
+%define		_ieeever	1.2.18
 %define		_fwver		1.14.2
 %define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
