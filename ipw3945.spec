@@ -6,19 +6,19 @@
 %bcond_with	verbose		# verbose build (V=1)
 #
 %define		_rel		1
-%define		_ieeever	1.1.16
-%define		_fwver		1.13
+%define		_ieeever	1.2.18
+%define		_fwver		1.14.2
 %define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
 Summary(de.UTF-8):	Intel(R) PRO/Wireless 3945 Treiber für Linux
 Summary(pl.UTF-8):	Sterownik dla Linuksa do kart Intel(R) PRO/Wireless 3945
 Name:		ipw3945
-Version:	1.2.0
+Version:	1.2.2
 Release:	%{_rel}
 License:	GPL v2
 Group:		Base/Kernel
 Source0:	http://dl.sourceforge.net/ipw3945/%{name}-%{version}.tgz
-# Source0-md5:	fd4cc3b52b8e1d4d1e303d30c9dcd31b
+# Source0-md5:	9e5ca2f3ffbb84270ede45d5572df4c9
 Source1:	%{name}-modprobe.conf
 Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-config.patch
