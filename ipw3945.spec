@@ -3,8 +3,7 @@
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		_rel		3
-%define		_ieeever	1.2.18
+%define		_rel		4
 %define		_fwver		1.14.2
 %define		_mod_suffix	current
 Summary:	Intel(R) PRO/Wireless 3945 Driver for Linux
@@ -21,8 +20,7 @@ Source1:	%{name}-modprobe.conf
 Patch0:		%{name}-bashizm.patch
 Patch1:		%{name}-config.patch
 URL:		http://ipw3945.sourceforge.net/
-BuildRequires:	ieee80211-devel = %{_ieeever}
-%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
+%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.22}
 BuildRequires:	rpmbuild(macros) >= 1.379
 BuildRequires:	sed >= 4.0
 Requires:	ipw3945-firmware = %{_fwver}
@@ -48,7 +46,6 @@ Summary(de.UTF-8):	Linux Kernel Modul für Intel(R) PRo/Wireless 3945 Netzwerkka
 Summary(pl.UTF-8):	Moduł jądra Linuksa dla kart Intel(R) PRO/Wireless 3945
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
-%(rpm -q --qf 'Requires: kernel%{_alt_kernel}-net-ieee80211 = %%{epoch}:%%{version}-%%{release}\n' ieee80211-devel | sed -e 's/ (none):/ /' | grep -v "is not")
 %{?with_dist_kernel:%requires_releq_kernel}
 Requires(post,postun):	/sbin/depmod
 Requires:	module-init-tools >= 3.2.2-2
