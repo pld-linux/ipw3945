@@ -3,7 +3,7 @@
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		_rel		16
+%define		_rel		17
 %define		_fwver		1.14.2
 %define		_mod_suffix	current
 %define		pname	ipw3945
@@ -90,5 +90,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kernel%{_alt_kernel}-net-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/misc/ipw3945-%{_mod_suffix}.ko*
-%{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945.conf
+%{_sysconfdir}/modprobe.d/%{_kernel_ver}/ipw3945%{_alt_kernel}.conf
 %endif
