@@ -3,7 +3,7 @@
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_with	verbose		# verbose build (V=1)
 #
-%define		_rel		18
+%define		_rel		19
 %define		_fwver		1.14.2
 %define		_mod_suffix	current
 %define		pname	ipw3945
