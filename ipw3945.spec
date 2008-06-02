@@ -20,6 +20,8 @@ Source0:	http://dl.sourceforge.net/ipw3945/%{pname}-%{version}.tgz
 Source1:	%{pname}-modprobe.conf
 Patch0:		%{pname}-bashizm.patch
 Patch1:		%{pname}-config.patch
+Patch2:		%{pname}-build.patch
+Patch3:		%{pname}-kernel-2.6.24.patch
 URL:		http://ipw3945.sourceforge.net/
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.22}
 BuildRequires:	rpmbuild(macros) >= 1.379
@@ -68,6 +70,8 @@ PRO/Wireless 3945.
 %setup -q -n %{pname}-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 export IEEE80211_INC="%{_kernelsrcdir}"
