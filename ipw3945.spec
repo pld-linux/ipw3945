@@ -34,6 +34,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 This project was created by Intel to enable support for the Intel
 PRO/Wireless 3945 Network Connection mini PCI adapter.
+
 Warning: that driver is obsolete - try using iwl3945 instead.
 
 %description -l de.UTF-8
@@ -43,7 +44,8 @@ Intel PRO/Wireless 3945 Netzwerkkarten zu ermöglichen.
 %description -l pl.UTF-8
 Ten projekt został stworzony przez Intela, aby umożliwić obsługę kart
 mini PCI Intel PRO/Wireless 3945 Network Connection.
-Uwaga: ten sterownik jest przestarzały - spróbuj użyć iwl3945.
+
+Uwaga: ten sterownik jest przestarzały, lepiej używać iwl3945.
 
 %package -n kernel%{_alt_kernel}-net-%{name}
 Summary:	Linux kernel module for the Intel(R) PRO/Wireless 3945
@@ -59,6 +61,7 @@ Provides:	%{name}
 %description -n kernel%{_alt_kernel}-net-%{name}
 This package contains Linux kernel drivers for the Intel(R)
 PRO/Wireless 3945.
+
 Warning: that driver is obsolete - try using iwl3945 instead.
 
 %description -n kernel%{_alt_kernel}-net-%{name} -l de.UTF-8
@@ -68,7 +71,8 @@ Dieses Paket enthält Linux Kernel Treiber für Intel(R) PRO/Wireless
 %description -n kernel%{_alt_kernel}-net-%{name} -l pl.UTF-8
 Ten pakiet zawiera sterowniki jądra Linuksa dla kart Intel(R)
 PRO/Wireless 3945.
-Uwaga: ten sterownik jest przestarzały - spróbuj użyć iwl3945.
+
+Uwaga: ten sterownik jest przestarzały, lepiej używać iwl3945.
 
 %prep
 %setup -q -n %{pname}-%{version}
